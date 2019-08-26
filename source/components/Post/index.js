@@ -27,7 +27,7 @@ export default class Post extends Component {
             <Consumer>
                 {(context) => (
                     <section className = {Styles.post}>
-                        <span className = { Styles.cross } onClick = { _removePost } />
+                        <span className = { Styles.cross } onClick = { () => _removePost(id) }/>
                         <img src = { context.avatar }/>
                         <a>{`${context.currentUserFirstName} ${context.currentUserLastName}`}</a>
                         <time>
