@@ -88,31 +88,28 @@ export default class Feed extends Component {
             return post;
         });
 
-    } 
-
-    async _removePost (id) {
-        this._setPostsFetchingState(true);
-
-        const removePosts = this.state.posts.map((post) => {
-            if (post.id === id) {
-                
-            }
         
-        };
-
-        await delay(1200);
-
-        this.setState(({ posts }) => ({
-            posts: [post, ...posts],
-            isPostsFetching: false,
-        }));
-    }
-
         this.setState({
             posts: newPosts,
             isPostsFetching: false,
         });
-    };
+
+    } 
+
+
+    async _removePost (id) {
+        this._setPostsFetchingState(true);
+
+        const removePosts = this.state.posts.filter((post => post.id !== id)); 
+
+        await delay(1200);
+
+        this.setState({
+            post: removePosts,
+            isPostsFetching: false,
+        });
+    }
+
 
     render() {
         const { posts, isPostsFetching } = this.state;
