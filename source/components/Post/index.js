@@ -12,6 +12,7 @@ import Styles from './styles.m.css';
 
 export default class Post extends Component {
     static propTypes = {
+        _removePost:  func.isRequired,
         _likePost:  func.isRequired,
         comment:    string.isRequired,
         created:    number.isRequired,
@@ -20,13 +21,13 @@ export default class Post extends Component {
     };
 
     render() {
-        const { comment, created, _likePost, id, likes } = this.props;
+        const { comment, created, _likePost, _removePost, id, likes } = this.props;
 
         return (
             <Consumer>
                 {(context) => (
                     <section className = {Styles.post}>
-                        <span className = { Styles.cross } />
+                        <span className = { Styles.cross } onClick = { _removePost } />
                         <img src = { context.avatar }/>
                         <a>{`${context.currentUserFirstName} ${context.currentUserLastName}`}</a>
                         <time>
