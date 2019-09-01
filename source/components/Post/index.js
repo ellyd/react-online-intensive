@@ -20,14 +20,20 @@ export default class Post extends Component {
         likes:      array.isRequired,
     };
 
+    _removePost = (event) => {
+        const { _removePost, id } = this.props;
+        _removePost(id);
+    }
+
+
     render() {
-        const { comment, created, _likePost, _removePost, id, likes } = this.props;
+        const { comment, created, _likePost, id, likes } = this.props;
 
         return (
             <Consumer>
                 {(context) => (
                     <section className = {Styles.post}>
-                        <span className = { Styles.cross } onClick = { () => _removePost(id) }/>
+                        <span className = { Styles.cross } onClick = { this._removePost }/>
                         <img src = { context.avatar }/>
                         <a>{`${context.currentUserFirstName} ${context.currentUserLastName}`}</a>
                         <time>
