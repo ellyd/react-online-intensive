@@ -20,7 +20,7 @@ export default class Post extends Component {
         likes:      array.isRequired,
     };
 
-    _removePost = (event) => {
+    _removePost = () => {
         const { _removePost, id } = this.props;
         _removePost(id);
     }
@@ -40,12 +40,7 @@ export default class Post extends Component {
                             {moment.unix(created).format('MMMM D h:mm:ss a')}
                         </time>
                         <p>{comment}</p>
-                        <Like
-                            _likePost = { _likePost }
-                            id = { id }
-                            likes = { likes }
-                            { ...context }
-                        />
+                        <Like  _likePost = { _likePost } id = { id } likes = { likes } />
                     </section>
                 )}
             </Consumer>
