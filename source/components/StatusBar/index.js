@@ -48,7 +48,7 @@ export default class StatusBar extends Component {
 
         return (
             <section className = { Styles.statusBar }>
-                <div className = { statusStyle }>
+                <div className = { statusStyle  }>
                     <div>{statusMassage}</div>
                     <span />
                 </div>
