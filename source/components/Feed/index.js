@@ -55,11 +55,45 @@ export default class Feed extends Component {
 
             }      
         });
+
+        socket.on('like', (postJSON) => {
+            const { data: likedPost, meta } = JSON.parse(postJSON);
+    
+            if (
+                `${currentUserFirstName} ${currentUserLastName}` !== 
+                `${meta.authorFirstName} ${meta.authorLastName}`
+            ) {
+                this.setState(({ posts }) => ({
+                    posts: posts.map(
+                        (post) => post.id === likedPost.id ? likedPost : post,
+                    )
+                }));
+    
+            }      
+        });
+
+        socket.on('unlike', (postJSON) => {
+            const { data: unlikedPost, meta } = JSON.parse(postJSON);
+    
+            if (
+                `${currentUserFirstName} ${currentUserLastName}` !== 
+                `${meta.authorFirstName} ${meta.authorLastName}`
+            ) {
+                this.setState(({ posts }) => ({
+                    posts: posts.map(
+                        (post) => post.id === unlikedPost.id ? unlikedPost : post,
+                    )
+                }));
+    
+            }      
+        });
     }
 
     componentWillUnmount () {
         socket.removeListener('create');
         socket.removeListener('remove');
+        socket.removeListener('like');s
+        ocket.removeListener('unlike');
     }
 
     _setPostsFetchingState = (state) => {
