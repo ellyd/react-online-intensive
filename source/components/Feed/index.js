@@ -49,7 +49,7 @@ export default class Feed extends Component {
                 `${currentUserFirstName} ${currentUserLastName}` !== 
                 `${meta.authorFirstName} ${meta.authorLastName}`
             ) {
-                this.setState(({ posts}) => ({
+                this.setState(({ posts }) => ({
                     posts: posts.filter((post) => post.id !== removedPost.id),
                 }));
 
