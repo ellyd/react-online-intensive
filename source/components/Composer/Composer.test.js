@@ -6,6 +6,9 @@ import { Composer } from './';
 
 const props = {
     _createPost: jest.fn(),
+    avatar: jest.fn(), 
+    currentUserFirstName: jest.fn(),
+
 };
 
 const comment = 'Merry Christmas!';
@@ -22,6 +25,8 @@ const result = mount(<Composer { ...props } />);
 
 const _submitCommentSpy = jest.spyOn(result.instance(), '_submitComment');
 const _handleFormSubmitSpy = jest.spyOn(result.instance(), '_handleFormSubmit');
+const _updateCommentSpy = jest.spyOn(result.instance(), '_updateComment');
+const _submitOnEnterSpy = jest.spyOn(result.instance(), '_submitOnEnter');
 
 describe('Composer component:', () => {
     test('should have 1 "section" element', () => {
@@ -92,8 +97,21 @@ describe('Composer component:', () => {
         expect(props._createPost).toHaveBeenCalledTimes(1);  
     });
 
+    test('avatar prop should be invoked once after form submission', () => {
+        expect(props.avatar).toHaveBeenCalledTimes(1);  
+    });
+
+    test('currentUserFirstName prop should be invoked once after form submission', () => {
+        expect(props.currentUserFirstName).toHaveBeenCalledTimes(1);  
+    });
+
     test('_submitComment and _handleFormSubmit class methods should be invoked once after form is submitted', () => {
         expect(_submitCommentSpy).toHaveBeenCalledTimes(1); 
-        expect(_handleFormSubmitSpy).toHaveBeenCalledTimes(1);  
+        expect(_handleFormSubmitSpy).toHaveBeenCalledTimes(1);
+    });
+
+    test('_updateComment and _submitOnEnter class methods should be invoked once after form submission', () => {
+        expect(_updateCommentSpy).toHaveBeenCalledTimes(1);
+        // expect(_submitOnEnterSpy).toHaveBeenCalledTimes(1);
     });
 });
