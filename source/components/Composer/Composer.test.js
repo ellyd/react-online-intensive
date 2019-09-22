@@ -6,8 +6,8 @@ import { Composer } from './';
 
 const props = {
     _createPost: jest.fn(),
-    avatar: jest.fn(), 
-    currentUserFirstName: jest.fn(),
+    avatar: 'string', 
+    currentUserFirstName: 'string',
 
 };
 
@@ -97,12 +97,12 @@ describe('Composer component:', () => {
         expect(props._createPost).toHaveBeenCalledTimes(1);  
     });
 
-    test('avatar prop should be invoked once after form submission', () => {
-        expect(props.avatar).toHaveBeenCalledTimes(1);  
+    test('avatar prop should be a string', () => {
+        expect(props.avatar).toBe('string');  
     });
 
-    test('currentUserFirstName prop should be invoked once after form submission', () => {
-        expect(props.currentUserFirstName).toHaveBeenCalledTimes(1);  
+    test('currentUserFirstName prop should be a string', () => {
+        expect(props.currentUserFirstName).toBe('string');;  
     });
 
     test('_submitComment and _handleFormSubmit class methods should be invoked once after form is submitted', () => {
