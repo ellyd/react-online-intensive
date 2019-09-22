@@ -32,6 +32,15 @@ export class Composer extends Component {
       this._submitComment();
     }
 
+    _submitOnEnter = (event) => {
+			const enterKey = event.key === 'Enter';
+
+			if (enterKey) {
+			event.preventDefault();
+			this._submitComment();
+			}
+		}
+
     _submitComment = () => {
       const { comment } = this.state;
 
@@ -44,15 +53,6 @@ export class Composer extends Component {
       this.setState({
         comment: '',
       });
-    }
-
-    _submitOnEnter = (event) => {
-        const enterKey = event.key === 'Enter';
-
-        if (enterKey) {
-          event.preventDefault();
-          this._submitComment();
-        }
     }
 
     render() {
