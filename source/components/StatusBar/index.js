@@ -70,6 +70,7 @@ export default class StatusBar extends Component {
                         <span>{ currentUserFirstName }</span>
                     </Link>
                     <Link to = {'/feed'}>Feed</Link>
+                    <button>Log Out</button>
                 </section>
             </Transition>
         );
